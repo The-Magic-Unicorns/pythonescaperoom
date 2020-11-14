@@ -28,7 +28,7 @@ class MyRoom(EscapeRoom):
             "Wie kann aus 3 Buchstaben ein 6-stelliger numerischer Code abgeleitet werden?",
             "Wie lautet der ASCII Code für einen Buchstaben?"
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.get_number_from_letters, "data": mysterious_letters}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.get_number_from_letters, "data": mysterious_letters, "algorithm": self.test}
 
     def create_level2(self):
         task_messages = [
@@ -60,3 +60,6 @@ class MyRoom(EscapeRoom):
             if not c in vowels:
                 result = result + c
         return result
+
+    def test(self, solution_attempt):
+        return True
