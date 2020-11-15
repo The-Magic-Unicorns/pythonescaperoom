@@ -1,6 +1,7 @@
 import random
 import string
 from EscapeRoom import EscapeRoom
+from classes.MagicSquare import MagicSquare
 
 
 class Charly_das_letzte_Einhorn(EscapeRoom):
@@ -29,15 +30,34 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         return {"task_messages": task_messages, "hints": hints, "solution_function": self.solutionLevel1, "data": self.encrypt(nextSpot, key)}
 
     def create_level2(self):
+        dim = random.randint(3, 15)
+        if dim % 2 == 0:
+            dim -= 1
+        square = MagicSquare()
+        storage = square.deploy(dim)
+        nuts = square.magicNumber
+
         task_messages = [
-            "Nach der korrekten Eingabe des Codes wird nun geheimnisvolle Musik abgespielt und eine Stimme sagt mehrfach: 'Vokale verboten'"
+            "<p>Charlie war klar, dass er das Rätsel so nicht lösen konnte, er brauchte mehr Hinweise und beschloss deshalb noch die anderen Orte zu besuchen.</p>",
+            "<p>2. Dunkler Wald:<br />Charlie traf ein Eichhörnchen das behauptet etwas zum Verbleib der Einhörner zu wissen, es will aber seine Informationen nur preisgeben wenn Charlie ihm vorher bei einem Problem hilft. Es hat " + str(nuts) + " Nüsse gesammelt und möchte diese in seiner Vorratskammer in einem ganz bestimmten Muster lagern. Die Nüsse sollen in einem " + str(square.dim) + "x" + str(square.dim) + " Raster liegen. In jedem Feld soll eine andere Anzahl an Nüssen liegen und in jeder Zeile und Spalte sollen insgesamt genau " + str(square.sum) + " Nüsse liegen. Bei korrekter Antwort gibt Eichhörnchen einen weiteren Hinweis zum Verbleib der Einhörner heraus.</p>"
         ]
         hints = [
-            "Wie lautet der Spruch 'Vokale verboten' wenn Vokale verboten sind?",
+            "Die Summe der Nüsse ist immer ungerade",
+            "Baue ein magisches Quadrad",
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.remove_vowels, "data": "Vokale verboten"}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solutionLevel2(), "data": "TEST"}
+
+    def create_level3(self):
+        task_messages = [
+            ""
+        ]
+        hints = [
+            ""
+        ]
+        return {"task_messages": task_messages, "hints": hints, "solution_functions": self.solutionLevel3(), "data": "TEST"}
 
 
+    ## BEGIN LEVEL 1 ##
     def encrypt(self, text, key):
         reverseText = text[::-1]
         encrypted = self.caesar(reverseText, key)
@@ -51,19 +71,24 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             encrypted += eChr
         return encrypted
 
-    ### SOLUTIONS ###
-
-    def solutionLevel1(self, text):
-        return self.decrypt(text, 2)
-
     def decrypt(self, text, key):
         key = key * -1
         return self.encrypt(text, key)
+    ## END LEVEL 1 ##
 
-    def remove_vowels(self, word):
-        result = ""
-        vowels = ["a", "e", "i", "o", "u"]
-        for c in word:
-            if not c in vowels:
-                result = result + c
-        return result
+    ### SOLUTIONS ###
+
+    ## BEGIN LEVEL 1 ##
+    def solutionLevel1(self, text):
+        return self.decrypt(text, 2)
+    ## END LEVEL 1 ##
+
+    ## BEGIN LEVEL 2 ##
+    def solutionLevel2(self):
+        return 1
+    ## END LEVEL 2 ##
+
+    ## BEGIN LEVEL 3 ##
+    def solutionLevel3(self):
+        return 1
+    ## END LEVEL 3 ##
