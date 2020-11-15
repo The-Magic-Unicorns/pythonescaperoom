@@ -11,6 +11,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         self.set_metadata("André Sünnemann", __name__)
         self.add_level(self.create_level1())
         self.add_level(self.create_level2())
+        self.add_level(self.create_level3())
 
     ### LEVELS ###
 
@@ -44,8 +45,9 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         hints = [
             "Die Summe der Nüsse ist immer ungerade",
             "Baue ein magisches Quadrad",
+            "http://www.mathe.tu-freiberg.de/~hebisch/cafe/magisch.html"
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solutionLevel2(), "data": "TEST"}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": square.deploy, "data": dim, "algorithm": square.check}
 
     def create_level3(self):
         task_messages = [
@@ -82,11 +84,6 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
     def solutionLevel1(self, text):
         return self.decrypt(text, 2)
     ## END LEVEL 1 ##
-
-    ## BEGIN LEVEL 2 ##
-    def solutionLevel2(self):
-        return 1
-    ## END LEVEL 2 ##
 
     ## BEGIN LEVEL 3 ##
     def solutionLevel3(self):

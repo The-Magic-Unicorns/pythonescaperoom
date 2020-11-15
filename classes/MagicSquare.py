@@ -92,3 +92,20 @@ class MagicSquare:
                 row += 1
 
         return grid
+
+    def check(self, grid, checkSum):
+        sumCols = [0] *len(grid[0])
+        for line in grid:
+            sumRow = 0
+            i = 0
+            for field in line:
+                sumRow += field
+                sumCols[i] += field
+                i += 1
+            if int(sumRow) != int(checkSum):
+                return False
+        for sumCol in sumCols:
+            if int(sumCol) != int(checkSum):
+                return False
+
+        return True
