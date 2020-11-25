@@ -7,36 +7,88 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
 
     def __init__(self):
         super().__init__()
-        self.set_metadata("André Sünnemann", __name__)
+        self.set_metadata("The Unicorn Project", __name__)
         self.add_level(self.create_level1())
         self.add_level(self.create_level2())
 
     ### LEVELS ###
 
     def create_level1(self):
-        nextSpot = "Gehe zum dunklen Wald"
+        flowers = ["RED", "INDIGO", "GREEN", "RED", "RED", "YELLOW", "GREEN", "VIOLETT", "INDIGO", "ORANGE", "BLUE", "BLUE", "YELLOW", "ORANGE", "BLUE", "VIOLETT", "YELLOW", "INDIGO", "GREEN", "ORANGE", "RED"]
+
+        task_messages = [
+            "Charlie beschloss sich erst einmal auf der Lichtung umzusehen, wo er schon mal hier war. Die Wolken zogen behäbig über den Himmel und ihre sanften Schatten dämpften das grelle Glitzern des taubedecktes Grases in der Morgensonne. Charlie fragte die Vögel, die Dachse, die Maulwürfe und den Fuchs ob sie etwas gesehen hatten doch alle waren ratlos. “Vielleicht haben die Bienen etwas gesehen, die sind immer schon früh unterwegs”, dachte sich Charlie und machte sich auf den Weg richtung Bienenstock der von einem Blumenmeer umgeben war. Vorsichtig darauf achtend keine Blumen unter seinen goldenen Hufen zu zertrampeln ging er auf eine Biene zu. 'Hallo fleißige Biene, du weißt nicht zufällig wo die anderen Einhörner sind?'</p>",
+            "'Hm, vielleicht weiß ich etwas darüber', summte die Biene, 'Da gibt es nur ein Problem: Sieh, ich bin gar nicht so fleißig wie es immer heißt. Und unsere Königin ist nicht nur unersättlich sondern auch sehr wählerisch. Sie möchte unseren frischen Honignektar nur in einer ganz bestimmten Zusammensetzung trinken. Die Blumen stehen aber so wild durcheinander, dass es furchtbar mühsam ist sie in der richtigen Reihenfolge anzufliegen. Und zu allem Übel habe ich auch noch vergessen was die Reihenfolge war die die Königin befohlen hatte. Hilfst du mir? Dann verrate ich dir was ich über die anderen Einhörner weiß.'</p>",
+            "Charlie sah sich die Blumen an, es gab: blaue, rote, grüne, gelbe, lilane, orangene und indigofarbene. Mit seiner magischen Einhornmagie war es ein Leichtes für ihn sie in anderer Reihenfolge einzupflanzen, nur in welcher Reihenfolge könnte die Königin diese Farben haben wollen?",
+            "Bisher standen sie so:",
+            "<b>" + self.getColors(flowers) + "</b>"
+        ]
+        hints = [
+            "Anzahl einzelner Farben irrelevant",
+            "Natürliches Phänomen, (Regen + Sonne)",
+            "ROYGBIV"
+        ]
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel1, "data": flowers}
+
+    def create_level2(self):
+        riddle = "Gehe zum dunklen Wald"
         key = 2
 
         task_messages = [
             "<p>Es war ein milder Frühlingmorgen als Charlie das Einhorn von den ersten Strahlen der Sonne geweckt wurde. Er gähnte, streckte sich und sah sich auf der Lichtung um die er als Schlafplatz gewählt hatte. Tausende kleine Blumen wiegten sich in der sachten Brise und die Waldtiere waren bereit geschäftig. Schmetterlinge und Bienen umschwirrten die Blüten, Eichhörnchen suchten im Unterholz nach Nüssen und die Vögel zwitscherten fröhlich ihre Lieder. Nur eines fehlte: die anderen Einhörner. “Seltsam”, dachte sich Charlie, “Wo sind sie denn alle hin?”. Er beschloss die Anderen zu suchen, wo startete er seine Suche?</p>",
-            "<p>1. Am See:<br />Auch hier waren keine Einhörner zu sehen. Nun begann Charlie sich wirklich Sorgen zu machen, was sollte er nur tun? Hier auf die anderen warten? Sie suchen gehen? Während er darüber grübelte beobachtete er gedankenverloren die Wolken ziehen die sich auf der Oberfläche des klaren Sees spiegelten. Dann wanderte sein Blick zu seiner eigenen Reflektion und einen Moment lang bewunderte er sein strahlend weißes Fell, seine wallende Mähne und sein goldenes Horn. Da fiel es ihm ein! “Mein Horn! Ich bin ein Einhorn! Ich bitte einfach den See mit meiner magischen Einhornmagie um einen Hinweis!” Gesagt, getan. Charlie bündelte seine Magie und erbat einen Hinweis zum Verbleib der anderen Einhörner. Der See leuchtete kurz hell auf und Charlie starrte konzentriert in die dunklen Tiefen. Plötzlich sah Charlie in der Spiegelung des Wassers wie die Wolken ihre Form zu verändern begannen. Sie bildeten… Buchstaben und Zeichen! Charlie merkte sich die Zeichenfolge: <b>" + self.encrypt(nextSpot, key) + "</b></p>"
+            "<p>1. Am See:<br />Auch hier waren keine Einhörner zu sehen. Nun begann Charlie sich wirklich Sorgen zu machen, was sollte er nur tun? Hier auf die anderen warten? Sie suchen gehen? Während er darüber grübelte beobachtete er gedankenverloren die Wolken ziehen die sich auf der Oberfläche des klaren Sees spiegelten. Dann wanderte sein Blick zu seiner eigenen Reflektion und einen Moment lang bewunderte er sein strahlend weißes Fell, seine wallende Mähne und sein goldenes Horn. Da fiel es ihm ein! “Mein Horn! Ich bin ein Einhorn! Ich bitte einfach den See mit meiner magischen Einhornmagie um einen Hinweis!” Gesagt, getan. Charlie bündelte seine Magie und erbat einen Hinweis zum Verbleib der anderen Einhörner. Der See leuchtete kurz hell auf und Charlie starrte konzentriert in die dunklen Tiefen. Plötzlich sah Charlie in der Spiegelung des Wassers wie die Wolken ihre Form zu verändern begannen. Sie bildeten… Buchstaben und Zeichen! Charlie merkte sich die Zeichenfolge: <b>" + self.encrypt(riddle, key) + "</b></p>"
         ]
         hints = [
             "Denke an den verdrehten Gaius Iulius Caesar",
             "Aus ABCabc wird dcbDCB",
             "Schlüssel sind variabel"
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solutionLevel1, "data": self.encrypt(nextSpot, key)}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel2, "data": self.encrypt(riddle, key)}
 
-    def create_level2(self):
+    def create_level3(self):
+        riddle = "Vokale verboten"
         task_messages = [
-            "Nach der korrekten Eingabe des Codes wird nun geheimnisvolle Musik abgespielt und eine Stimme sagt mehrfach: 'Vokale verboten'"
+            "Nach der korrekten Eingabe des Codes wird nun geheimnisvolle Musik abgespielt und eine Stimme sagt mehrfach: ",
+            "</b>" + riddle + "</b>"
         ]
         hints = [
-            "Wie lautet der Spruch 'Vokale verboten' wenn Vokale verboten sind?",
+            "Wie lautet der Spruch '" + riddle + "' wenn Vokale verboten sind?",
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.remove_vowels, "data": "Vokale verboten"}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel3, "data": riddle}
 
+    ### Functions for level design ####
+
+    def getColors(self, flowers):
+        colored_output = "- "
+        for flower in flowers:
+            colored_output = colored_output + '<font color="' + flower.lower() + '">' + flower + '</font> - '
+        return colored_output
+
+    ### SOLUTIONS ###
+
+    def solveLevel1(self, riddle):
+        def get_color_value(color):
+            return {
+                'RED': 1,
+                'ORANGE': 2,
+                'YELLOW': 3,
+                'GREEN': 4,
+                'BLUE': 5,
+                'INDIGO': 6,
+                'VIOLETT': 7
+                }.get(color)
+        return sorted(riddle, key=lambda flower: get_color_value(flower))
+
+        return True
+
+    ### Level 2 ###
+
+    def solveLevel2(self, text):
+        return self.decrypt(text, 2)
+
+    def decrypt(self, text, key):
+        key = key * -1
+        return self.encrypt(text, key)
 
     def encrypt(self, text, key):
         reverseText = text[::-1]
@@ -51,16 +103,9 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             encrypted += eChr
         return encrypted
 
-    ### SOLUTIONS ###
+    ### Level 3 ###
 
-    def solutionLevel1(self, text):
-        return self.decrypt(text, 2)
-
-    def decrypt(self, text, key):
-        key = key * -1
-        return self.encrypt(text, key)
-
-    def remove_vowels(self, word):
+    def solveLevel3(self, word):
         result = ""
         vowels = ["a", "e", "i", "o", "u"]
         for c in word:
