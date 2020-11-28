@@ -56,6 +56,39 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         ]
         return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel3, "data": riddle}
 
+    def create_level4(self):
+        riddle = ""
+        task_messages = [
+            "",
+            ""
+        ]
+        hints = [
+            ""
+        ]
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel4, "data": riddle}
+
+    def create_level5(self):
+        riddle = ""
+        task_messages = [
+            "",
+            ""
+        ]
+        hints = [
+            ""
+        ]
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel5, "data": riddle}
+
+    def create_level6(self):
+        riddle = ""
+        task_messages = [
+            "",
+            ""
+        ]
+        hints = [
+            ""
+        ]
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel6(), "data": riddle, "algorithm": self.testLevel6Solution()}
+
     ### Functions for level design ####
 
     def getColors(self, flowers):
@@ -112,3 +145,56 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             if not c in vowels:
                 result = result + c
         return result
+
+    ### Level 4 ###
+    # Result should be in lower case
+    def solveLevel4(self, riddle):
+        result = ""
+        for word in riddle.split():
+            if word.isdigit():
+                continue
+            # This means not all poitions in word are numeric, now it could be iterated over word using different methods:
+            # via char index
+            # via similar for loop as above
+            # via slicing operator
+            # this is not necessary in our example but described in our slides
+            result += word[0].lower()
+        return result
+
+    ### Level 5 ###
+    #Count of all combination possibilities of a given word
+    def solveLevel5(self, riddle):
+        def recursive_combinations(input_word, combinations=['']):
+            if len(input_word) == 0:
+                return combinations
+            first_letter = input_word[0]
+            reduced_word = input_word[1:]
+            combinations = combinations + list(map(lambda x: x + first_letter, combinations))
+            return recursive_combinations(reduced_word, combinations)
+        return recursive_combinations(riddle).count()
+
+    ### Level 6 ###
+    # The 9 field problem - one possible solution
+    def solveLevel6(self, riddle):
+        result = ""
+        return result
+
+    # the 9 field problem - testing algorithm
+    def testLevel6Solution(self, result):
+        def test_row(matrix_row):
+            row_length = len(matrix_row)
+            magical_sum = (row_length**3 + row_length) / 2
+            return sum(matrix_row) == magical_sum
+        def test_numbers(matrix):
+            value_list = []
+            for i in len(matrix):
+                for j in len(matrix[i]):
+                    value_list.append(matrix[i][j])
+            value_list = value_list.sort()
+            for index in len(value_list):
+                counter = 1
+                if value_list[index] != counter:
+                    return False
+                counter += 1
+            return True
+        return test_row(result[0]) and test_row(result[1]) and test_row(result[2]) and test_numbers(result)
