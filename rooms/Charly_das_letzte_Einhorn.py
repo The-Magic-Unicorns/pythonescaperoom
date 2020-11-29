@@ -79,7 +79,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel5, "data": riddle}
 
     def create_level6(self):
-        riddle = ""
+        riddle = {"matrix_size": 3, "magical_sum": 15}
         task_messages = [
             "",
             ""
@@ -111,8 +111,6 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
                 'VIOLETT': 7
                 }.get(color)
         return sorted(riddle, key=lambda flower: get_color_value(flower))
-
-        return True
 
     ### Level 2 ###
 
@@ -174,25 +172,35 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         return recursive_combinations(riddle).count()
 
     ### Level 6 ###
-    # The 9 field problem - one possible solution
-    def solveLevel6(self, riddle):
-        result = ""
+    # The 9 field problem - one possible solution could be to create an full magic square or our simple solution
+    def solveLevel6(riddle):
+        import random
+
+        result = []
+        all_numbers = set([i for i in range(1, riddle["matrix_size"]**2 + 1)])
+
+        for i in range(riddle["matrix_size"]):
+            row = []
+            while sum(row) != riddle["magical_sum"]:
+                row = random.sample(all_numbers, 3)
+            all_numbers = all_numbers.difference(set(row))
+            result.append(row)
         return result
 
     # the 9 field problem - testing algorithm
-    def testLevel6Solution(self, result):
+    def testLevel6Solution(result):
         def test_row(matrix_row):
             row_length = len(matrix_row)
-            magical_sum = (row_length**3 + row_length) / 2
+            magical_sum = int((row_length**3 + row_length) / 2)
             return sum(matrix_row) == magical_sum
         def test_numbers(matrix):
             value_list = []
-            for i in len(matrix):
-                for j in len(matrix[i]):
+            for i in range(len(matrix)):
+                for j in range(len(matrix[i])):
                     value_list.append(matrix[i][j])
-            value_list = value_list.sort()
-            for index in len(value_list):
-                counter = 1
+            list.sort(value_list)
+            counter = 1
+            for index in range(len(value_list)):
                 if value_list[index] != counter:
                     return False
                 counter += 1
