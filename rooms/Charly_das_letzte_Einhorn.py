@@ -1,7 +1,7 @@
 import random
 import string
 from EscapeRoom import EscapeRoom
-
+from classes.MagicSquare import MagicSquare
 
 class Charly_das_letzte_Einhorn(EscapeRoom):
 
@@ -79,15 +79,27 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel5, "data": riddle}
 
     def create_level6(self):
-        riddle = {"matrix_size": 3, "magical_sum": 15}
+        dim = random.randint(3, 15)
+        if dim % 2 == 0:
+            dim -= 1
+        square = MagicSquare()
+        nuts = square.magicNumber
+
         task_messages = [
-            "",
-            ""
+            "<p>Charlie war klar, dass er das Rätsel so nicht lösen konnte, er brauchte mehr Hinweise und beschloss deshalb noch die anderen Orte zu besuchen.</p>",
+            "<p>2. Dunkler Wald:<br />Charlie traf ein Eichhörnchen das behauptet etwas zum Verbleib der Einhörner zu wissen, es will aber seine Informationen nur preisgeben wenn Charlie ihm vorher bei einem Problem hilft. Es hat " + str(
+                nuts) + " Nüsse gesammelt und möchte diese in seiner Vorratskammer in einem ganz bestimmten Muster lagern. Die Nüsse sollen in einem " + str(
+                square.dim) + "x" + str(
+                square.dim) + " Raster liegen. In jedem Feld soll eine andere Anzahl an Nüssen liegen und in jeder Zeile und Spalte sollen insgesamt genau " + str(
+                square.sum) + " Nüsse liegen. Bei korrekter Antwort gibt Eichhörnchen einen weiteren Hinweis zum Verbleib der Einhörner heraus.</p>"
         ]
         hints = [
-            ""
+            "Die Summe der Nüsse ist immer ungerade",
+            "Baue ein magisches Quadrad",
+            "http://www.mathe.tu-freiberg.de/~hebisch/cafe/magisch.html"
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel6(), "data": riddle, "algorithm": self.testLevel6Solution()}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": square.deploy, "data": dim,
+                "algorithm": square.check}
 
     ### Functions for level design ####
 

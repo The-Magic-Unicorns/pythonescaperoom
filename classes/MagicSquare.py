@@ -94,7 +94,12 @@ class MagicSquare:
         return grid
 
     def check(self, grid, checkSum):
-        sumCols = [0] *len(grid[0])
+        dim = len(grid[0])
+        ### checksum for cols
+        sumCols = [0] * dim
+        ### checksum for diagonals
+        sumD1 = sumD2 = 0
+        j = 0
         for line in grid:
             sumRow = 0
             i = 0
@@ -102,10 +107,26 @@ class MagicSquare:
                 sumRow += field
                 sumCols[i] += field
                 i += 1
+            sumD1 += line[j]
+            sumD2 += line[dim - j - 1]
+            j += 1
             if int(sumRow) != int(checkSum):
                 return False
+        if sumD1 != sumD2 != checkSum:
+            return False
         for sumCol in sumCols:
             if int(sumCol) != int(checkSum):
                 return False
-
+        ### check if every number is used only once
+        number = 1
+        maxNum = dim * dim
+        while number <= maxNum:
+            found = False
+            for line in grid:
+                for field in line:
+                    if field == i:
+                        if found:
+                            return False
+                        else:
+                            found = True
         return True
