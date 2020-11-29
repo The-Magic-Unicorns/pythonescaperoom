@@ -182,7 +182,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         for i in range(riddle["matrix_size"]):
             row = []
             while sum(row) != riddle["magical_sum"]:
-                row = random.sample(all_numbers, 3)
+                row = random.sample(all_numbers, riddle["magical_sum"])
             all_numbers = all_numbers.difference(set(row))
             result.append(row)
         return result
