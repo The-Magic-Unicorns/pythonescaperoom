@@ -23,13 +23,13 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             <br/> Bisher standen sie so: """,
             "<b>" + self.getColors(flowers) + "</b>"
         ]
-        success_meesage = "Charlie richtete sein Horn auf die Blumen, es blitzte hell auf und alle Blümchen erhoben sich, samt einem Klumpen Erde an der Wurzel, in die Lüfte um sich dann, schön geordnet in den Farben des Regenbogens in einem halbkreis um den Bienenstock herum selbst wieder einzupflanzen. Die Biene summte fröhlich und flog ein paar Loopings. “Ich weiß, dass du die anderen Einhörner bestimmt schneller wieder siehst wenn du jetzt nicht auf der Lichtung bleibst. Also hopp hopp, weg mit dir, tiefer in den Wald.” Diese Aussage fand Charlie nun doch sehr mysteriös aber die Biene war bereits wieder in den Stock geflogen und so machte er sich auf den Weg zum See."
+        success_message = "Charlie richtete sein Horn auf die Blumen, es blitzte hell auf und alle Blümchen erhoben sich, samt einem Klumpen Erde an der Wurzel, in die Lüfte um sich dann, schön geordnet in den Farben des Regenbogens in einem halbkreis um den Bienenstock herum selbst wieder einzupflanzen. Die Biene summte fröhlich und flog ein paar Loopings. “Ich weiß, dass du die anderen Einhörner bestimmt schneller wieder siehst wenn du jetzt nicht auf der Lichtung bleibst. Also hopp hopp, weg mit dir, tiefer in den Wald.” Diese Aussage fand Charlie nun doch sehr mysteriös aber die Biene war bereits wieder in den Stock geflogen und so machte er sich auf den Weg zum See."
         hints = [
             "Es standen tausende kleine Blumen auf der Lichtung, Charlie pflanzte nur einige davon um. Es ist für die Lösung des Rätsels unerheblich wie viele Blumen es sind, es geht nur um die Reihenfolge der Farben.",
             "Die Königin kam gestern auf die Idee diese bestimmte Reihenfolge zu wollen als sie etwas sah das ihr gefiel. Charlie erinnerte sich, dass es gestern zwar im Allgemeinen sonnig war, es zwischendurch aber immer wieder kurze Regenschauer gab.",
             "R O Y G B I V"
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel1, "data": flowers, "success_meesage": success_meesage}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel1, "data": flowers, "success_message": success_message}
 
     def create_level2(self):
         riddle =  "gehe zum fluss" #"llney fns xaxz" # gehe zum fluss
@@ -49,13 +49,13 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
                  self.encrypt(riddle, key),
                 "”</p>"
         ]
-        success_meesage = "Charlie beschloss dem Hinweis zu folgen und dort weiter zu suchen."
+        success_message = "Charlie beschloss dem Hinweis zu folgen und dort weiter zu suchen."
         hints = [
             "Denke an den verdehten Gaius Julius Caesar.",
             "Charlie sah die Wolkenbuchstaben in der Spiegelung des Sees. Vielleicht hat er sie sich deshalb spiegelverkehrt gemerkt? Aus AbCaBc würde so cBaCbA werden.",
             "Die Schlüssel sind variabel."
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel2, "data": self.encrypt(riddle, key), "success_meesage": success_meesage}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel2, "data": self.encrypt(riddle, key), "success_message": success_message}
 
     def create_level3(self):
         riddle = "Vokale verboten"
@@ -73,7 +73,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
                 einfachsten Übungen den gelungen Anmachspruch des Kaninchens zu konvertieren: “SUCHE NETTE KANINCHENDAME ZUM FAMILIE ERWEITERN!”</p>
             """
         ]
-        success_meesage = """<p>
+        success_message = """<p>
                 ‘Erweitern?’ dachte sich Charlie, ‘seltsame Wortwahl’ aber dann dachte er sich nichts weiter dabei und verhexte den Laptop sodass nun alles 
                 klein geschrieben wurde. “Vielen Dank!” sagte das Kaninchen “Bestimmt hat meine Frau oder eins meiner Kinder wieder heimlich beim Chatten 
                 Möhren gemümmelt und in die Tastatur gekrümelt”</p>
@@ -82,7 +82,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         hints = [
            "In diesem Rätsel ist nichts Besonderes gefordert, ein einfacher Algorithmus der Uppercase zu Lowercase umwandelt reicht aus"
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel3, "data": riddle, "success_meesage": success_meesage}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel3, "data": riddle, "success_message": success_message}
 
     def create_level4(self):
         riddle = "ENHALCAE"
@@ -96,7 +96,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
                 </p>
             """
         ]
-        success_meesage = """
+        success_message = """
             Charlie überlegte kurz. “Ganz klar, du musst nur """ + self.solveLevel4(riddle) + """ Rätselblätter einschicken damit die richtige Lösung auf jeden Fall dabei ist.”
             “Gar kein Problem!” sagte die Eule dankbar “Vielleicht habe ich so viele sogar noch rumliegen”. Sie flog zu einem hohlen Baumstamm und fing an darin herumzuwühlen. Charlie setzte seine Suche fort. 
         """
@@ -106,7 +106,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             "Diese Aufgabe lässt sich ganz leicht über Fakultät lösen."
 
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel4, "data": riddle, "success_meesage": success_meesage}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel4, "data": riddle, "success_message": success_message}
 
     def create_level5(self):
         riddle = ""
@@ -130,7 +130,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             Nun musste Charlie rausfinden was dieser Spruch war und welche Buchstaben er für die Lösung weglassen musste.
             </p>"""
         ]
-        success_meesage = """<p>
+        success_message = """<p>
         Als Charlie die Buchstaben “ssm ffn dch” eingab sprang die Fessel mit einem dumpfen Klicken auf und der Falke hüpfte fröhlich umher. Er bedankte sich überschwänglich und erklärte sich bereit Charlie bei der Suche nach den Einhörnern zu helfen. Sofort erhob er sich in die Lüfte, flog ein paar Kreise und rief Charlie dann zu: “Heh ich glaube ich kann sie sehen! Komm folge mir!” Charlie galoppierte aufgeregt dem Falken hinterer.
         </p>"""
         hints = [
@@ -139,7 +139,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             "Die Muttersprache des Scheichs ist natürlich Arabisch. Hier werden in der Regel Vokale nicht geschrieben."
 
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel5, "data": riddle, "success_meesage": success_meesage}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel5, "data": riddle, "success_message": success_message}
 
     def create_level6(self):
         riddle = {"matrix_size": 3, "magical_sum": 15}
@@ -157,7 +157,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             Das ist ganz einfach, ihr macht das so…”
             </p>"""
         ]
-        success_meesage = """<p>
+        success_message = """<p>
             Charlie zeigte ihnen wie sie die Nüsse anordnen mussten und die drei Brüder nahmen sich glücklich an den Händen und tanzten im Kreis. 
             “Vielen Dank, magisches Einhorn, nun müssen wir nie mehr streiten” quiekte Chip. “Ja vielen Dank!” kam von Chop. 
             “Danke, und viel Spaß bei der Party” sagte Chap. Chip und Chop starrten ihn entsetzt an “Das dürfen wir doch nicht verraten! 
@@ -182,7 +182,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         hints = [
             "Passend zum Protagonisten, einem magischen Einhorn, wird hier ein magisches Quadrat verlangt."
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel6(), "data": riddle, "algorithm": self.testLevel6Solution(), "success_meesage": success_meesage}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel6(), "data": riddle, "algorithm": self.testLevel6Solution(), "success_message": success_message}
 
     ### Functions for level design ####
 
