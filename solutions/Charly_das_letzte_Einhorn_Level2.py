@@ -9,8 +9,11 @@ def run(text):
     def caesar(text, key):
         encrypted = ""
         for uChr in text:
-            iChr = ord(uChr)
-            eChr = chr((iChr + key) %128)
+            if uChr == ' ':
+                encrypted += uChr
+                continue
+            iChr = ord(uChr) - 97
+            eChr = chr((iChr + key) % 26 + 97)
             encrypted += eChr
         return encrypted
-    return decrypt(text, 2)
+    return decrypt(text, 19)

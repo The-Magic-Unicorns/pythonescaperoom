@@ -64,7 +64,7 @@ function next_room() {
 
 function notify(message, fadeout = true) {
     if (fadeout) {
-        $("#message").text(message).fadeTo(500, 1).delay(3000).fadeTo(500, 0);
+        $("#message").text(message).fadeTo(500, 1).delay(15000).fadeTo(500, 0);
     }
     else {
         $("#message").text(message).fadeTo(500, 1);
@@ -138,7 +138,7 @@ function upload() {
 
 function show_result(result) {
     if (result.correct) {
-        notify("Deine Lösung ist: " + result.solution + ". Juhu, das war richtig!");
+        notify("Deine Lösung ist: " + result.solution + ". Juhu, das war richtig! Und unsere Geschichte geht weiter: " + result.success_message);
         next_level();
     }
     else {

@@ -10,6 +10,10 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         self.set_metadata("The Unicorn Project", __name__)
         self.add_level(self.create_level1())
         self.add_level(self.create_level2())
+        self.add_level(self.create_level3())
+        self.add_level(self.create_level4())
+        self.add_level(self.create_level5())
+        self.add_level(self.create_level6())
 
     ### LEVELS ###
 
@@ -34,7 +38,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel1, "data": flowers, "success_message": success_message}
 
     def create_level2(self):
-        riddle =  "gehe zum fluss" #"llney fns xaxz" # gehe zum fluss
+        riddle = "gehe zum fluss" #"llney fns xaxz" # gehe zum fluss
         key = 19
 
         task_messages = [
@@ -99,7 +103,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             """
         ]
         success_message = """
-            Charlie überlegte kurz. “Ganz klar, du musst nur """ + self.solveLevel4(riddle) + """ Rätselblätter einschicken damit die richtige Lösung auf jeden Fall dabei ist.”
+            Charlie überlegte kurz. “Ganz klar, du musst nur """ + str(self.solveLevel4(riddle)) + """ Rätselblätter einschicken damit die richtige Lösung auf jeden Fall dabei ist.”
             “Gar kein Problem!” sagte die Eule dankbar “Vielleicht habe ich so viele sogar noch rumliegen”. Sie flog zu einem hohlen Baumstamm und fing an darin herumzuwühlen. Charlie setzte seine Suche fort. 
         """
         hints = [
@@ -184,9 +188,24 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         hints = [
             "Passend zum Protagonisten, einem magischen Einhorn, wird hier ein magisches Quadrat verlangt."
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel6(), "data": riddle, "algorithm": self.testLevel6Solution(), "success_message": success_message}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel6, "data": riddle, "algorithm": self.testLevel6Solution, "success_message": success_message}
 
     ### Functions for level design ####
+
+    def encrypt(self, text, key):
+        def caesar(text, key):
+            encrypted = ""
+            for uChr in text:
+                if uChr == ' ':
+                    encrypted += uChr
+                    continue
+                iChr = ord(uChr) - 97
+                eChr = chr((iChr + key) % 26 + 97)
+                encrypted += eChr
+            return encrypted
+        reverseText = text[::-1]
+        encrypted = caesar(reverseText, key)
+        return encrypted
 
     def getColors(self, flowers):
         colored_output = "- "
@@ -212,24 +231,24 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
     ### Level 2 ###
 
     def solveLevel2(self, text):
-        def decrypt(self, text, key):
+        def decrypt(text, key):
             key = key * -1
-            return self.encrypt(text, key)
-        def encrypt(self, text, key):
+            return encrypt(text, key)
+        def encrypt(text, key):
             reverseText = text[::-1]
-            encrypted = self.caesar(reverseText, key)
+            encrypted = caesar(reverseText, key)
             return encrypted
-        def caesar(self, text, key):
+        def caesar(text, key):
             encrypted = ""
             for uChr in text:
                 if uChr == ' ':
                     encrypted += uChr
                     continue
                 iChr = ord(uChr) - 97
-                eChr = chr((iChr + key) %26 + 97)
+                eChr = chr((iChr + key) % 26 + 97)
                 encrypted += eChr
             return encrypted
-        return self.decrypt(text, 2)
+        return decrypt(text, 19)
 
     ### Level 3 ###
     # Result should be in lower case
@@ -256,7 +275,18 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             reduced_word = input_word[1:]
             combinations = combinations + list(map(lambda x: x + first_letter, combinations))
             return recursive_combinations(reduced_word, combinations)
-        return recursive_combinations(riddle)
+        return len(recursive_combinations(riddle))
+
+    #Permutations
+    def solveLevel4b(self, riddle):
+        def permutations(input_word, permutation=""):
+            if len(input_word) == 0:
+                return permutation
+            for i in range(len(input_word)):
+                new_permutation = permutation + input_word[i]
+                rest_of_word = input_word[0:i] + input_word[i+1:]
+                return permutations(rest_of_word, new_permutation)
+        return permutations(riddle)
 
     ### Level 5 ###
     def solveLevel5(self, word):
@@ -267,23 +297,9 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
                 result = result + c
         return result
 
-    #Permutations
-    def solveLevel5b(riddle):
-        result = []
-        def permutations(input_word, permutation=""):
-            if len(input_word) == 0:
-                result.append(permutation)
-            for i in range(len(input_word)):
-                new_permutation = permutation + input_word[i]
-                rest_of_word = input_word[0:i] + input_word[i+1:]
-                permutations(rest_of_word, new_permutation)
-        permutations(riddle)
-        return result
-
-
     ### Level 6 ###
     # The 9 field problem - one possible solution could be to create a full magic square or our simple solution
-    def solveLevel6(riddle):
+    def solveLevel6(self, riddle):
         import random
 
         result = []
@@ -301,7 +317,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         return result
 
     # the 9 field problem - testing algorithm
-    def testLevel6Solution(result):
+    def testLevel6Solution(self, result):
         def test_row(matrix_row):
             row_length = len(matrix_row)
             magical_sum = int((row_length**3 + row_length) / 2)

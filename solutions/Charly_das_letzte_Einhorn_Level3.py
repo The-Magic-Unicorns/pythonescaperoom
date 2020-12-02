@@ -1,9 +1,8 @@
-def run(text):
-    deCrypted = ""
-    key = -2
-    for uChr in text:
-        iChr = ord(uChr)
-        eChr = chr((iChr + key) % 128)
-        deCrypted += eChr
-    reverseText = deCrypted[::-1]
-    return reverseText
+
+def run(riddle):
+    result = ""
+    for word in riddle.split():
+        if word.isdigit():
+            continue
+        result += word[0].lower()
+    return result
