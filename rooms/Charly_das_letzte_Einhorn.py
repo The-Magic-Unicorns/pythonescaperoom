@@ -125,6 +125,8 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         def caesar(self, text, key):
             encrypted = ""
             for uChr in text:
+                if uChr == ' ':
+                    continue
                 iChr = ord(uChr)
                 eChr = chr((iChr + key) %128)
                 encrypted += eChr
@@ -169,7 +171,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         return recursive_combinations(riddle).count()
 
     ### Level 6 ###
-    # The 9 field problem - one possible solution could be to create an full magic square or our simple solution
+    # The 9 field problem - one possible solution could be to create a full magic square or our simple solution
     def solveLevel6(riddle):
         import random
 
