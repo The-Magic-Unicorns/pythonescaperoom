@@ -80,7 +80,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
                 <p>Charlie schaute das Kaninchen perplex an. Seine Frau? Eins seiner Kinder? 
                 Aber Kaninchensitten waren eben andere als Einhornsitten und so setzte Charlie kommentarlos seine Suche fort.</p>"""
         hints = [
-            "Wie lautet der Spruch '" + riddle + "' wenn Vokale verboten sind?",
+           "In diesem Rätsel ist nichts Besonderes gefordert, ein einfacher Algorithmus der Uppercase zu Lowercase umwandelt reicht aus"
         ]
         return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel3, "data": riddle, "success_meesage": success_meesage}
 
