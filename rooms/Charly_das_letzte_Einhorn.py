@@ -111,24 +111,78 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
     def create_level5(self):
         riddle = ""
         task_messages = [
-            "",
-            ""
+            """<p>
+            Charlie war nicht gerade begeistert von seinem Ziel aber er wollte gründlich suchen und keinen Ort auslassen. 
+            So machte er sich auf den Weg zu den Steilklippen.
+            Vorsichtig näherte sich Charlie dem Abgrund. Er spürte seinen Magen flattern als er über den Rand der Klippe spähte. 
+            Die Anderen werden doch wohl nicht… nein, das konnte nicht sein. Alle wussten, dass dieser Bereich des riesigen Waldes von Klippen durchzogen 
+            war und überließen ihn deshalb den Greifvögeln. Prompt hörte er ein schrilles Rufen, pfeilschnell zischte etwas durch sein Blickfeld, 
+            flog eine weite Schleife und landete dann vor ihm. Ein wunderschöner, dunkel getupfter Falke saß vor ihm und schaute erwartungsvoll zu ihm hoch. 
+            Der Falke sprach mit heller Stimme: “Marhaban! Ich komme aus fremde Land. Weite Reise! Suche Hilfe. Du mir helfen, magische, gehörnte Kreatur?”
+            “Aber selbstverständlich” versprach Charlie, “Wo liegt denn das Problem?”.
+            “Ich Diener von große Scheich war, ich entkommen! Aber ich noch immer tragen Fessel. Fliegen schwierig damit. Fessel so gebaut ist, dass öffnet 
+            wenn ich richtige Lösungssatz eingebe.” Der Falke strecke traurig sein Bein aus an dem eine große, goldene Fessel erkennbar war die eine 
+            Art Zahlenschloss aus Buchstaben hatte. Er erklärte, dass der Scheich sehr stolz war auf seine Deutschkenntnisse und deshalb den Lösungssatz 
+            auf Deutsch mit lateinischen Buchstaben einprogrammiert hatte, allerdings hatte der Scheich übersehen, dass es auf Deutsch üblich war mehr 
+            Buchstaben zu verwenden als in seiner Muttersprache und deshalb einige, bestimmte Buchstaben nicht geschrieben. An der Fessel war erkennbar, 
+            dass der Lössungssatz aus drei Worten mit jeweils drei Buchstaben bestand. Charlie ging davon aus, dass der Scheich vermutlich nicht übermäßg 
+            kreativ gewesen war und bestimmt einen typischen Spruch als Lösung gewählt hatte.
+            Nun musste Charlie rausfinden was dieser Spruch war und welche Buchstaben er für die Lösung weglassen musste.
+            </p>"""
         ]
+        success_meesage = """<p>
+        Als Charlie die Buchstaben “ssm ffn dch” eingab sprang die Fessel mit einem dumpfen Klicken auf und der Falke hüpfte fröhlich umher. Er bedankte sich überschwänglich und erklärte sich bereit Charlie bei der Suche nach den Einhörnern zu helfen. Sofort erhob er sich in die Lüfte, flog ein paar Kreise und rief Charlie dann zu: “Heh ich glaube ich kann sie sehen! Komm folge mir!” Charlie galoppierte aufgeregt dem Falken hinterer.
+        </p>"""
         hints = [
-            ""
+            "Der Name des Scheichs war Ali Baba. Mit dem selben Lösungssatz hatte er schon einmal 40 Räuber überlistet. (Der Lösungssatz muss ohne Umlaute geschrieben werden (ä = ae, ü = ue, ö = oe))",
+            "Dass der Lösungssatz “Sesam oeffne dich” ist habt ihr bestimmt längst raus. Welche Buchstaben, die alle zu einer Gruppe gehören, könnte man hier weglassen um pro Wort jeweils 3 Buchstaben übrig zu haben?",
+            "Die Muttersprache des Scheichs ist natürlich Arabisch. Hier werden in der Regel Vokale nicht geschrieben."
+
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel5, "data": riddle}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel5, "data": riddle, "success_meesage": success_meesage}
 
     def create_level6(self):
         riddle = {"matrix_size": 3, "magical_sum": 15}
         task_messages = [
-            "",
-            ""
+            """<p>
+            Charlie galoppierte anmutig durch den Wald, immer dem Falken hinterher, als er aufgeregtes Gequieke hörte. 
+            Er rief dem Falken zu bitte kurz zu warten und machte sich auf um herauszufinden wo der Lärm her kam. 
+            Auf einem Baumstamm saßen drei Eichhörnchen und stritten miteinander. “Was ist denn los?” fragte Charlie, “Kann ich irgendwie helfen?”
+            Eines der Eichhörnchen wendete sich ihm zu “Hallo Einhorn, das sind meine zwei Brüder Chip und Chap, ich heiße Chop. 
+            Wir haben gemeinsam Nüsse 45 gesammelt aber jetzt schaffen wir es nicht sie fair aufzuteilen. Bei uns ist es Tradition die Nüsse in ein 
+            3x3 Raster zu ordnen, und zwar so, dass in keinem Feld die gleiche Anzahl Nüsse liegt. Nun wollen wir uns aber frei entscheiden können welche 
+            Zeile oder Spalte mit Nüssen wir uns aussuchen und trotzdem soll jeder die gleiche Anzahl Nüsse bekommen. Kannst du uns helfen?”
+            “Natürlich” seufzte Charlie und dachte sich, dass er doch nun bald mal alle Waldtiere abgearbeitet haben sollte… “Also, ihr wollt ein 3x3 Raster 
+            mit 45 Nüssen befüllen, so dass in jedem Feld eine andere Anzahl Nüsse liegt und in jeder Zeile und Spalte die selbe Anzahl an Nüssen liegt. 
+            Das ist ganz einfach, ihr macht das so…”
+            </p>"""
         ]
+        success_meesage = """<p>
+            Charlie zeigte ihnen wie sie die Nüsse anordnen mussten und die drei Brüder nahmen sich glücklich an den Händen und tanzten im Kreis. 
+            “Vielen Dank, magisches Einhorn, nun müssen wir nie mehr streiten” quiekte Chip. “Ja vielen Dank!” kam von Chop. 
+            “Danke, und viel Spaß bei der Party” sagte Chap. Chip und Chop starrten ihn entsetzt an “Das dürfen wir doch nicht verraten! 
+            Du bist so doof, immer verplapperst du dich!”  “Gar nicht immer! Und ihr seit viel dööfer!” kreischte Chap und schubste Chop vom 
+            Baumstamm nur um dafür direkt von Chip eine Ohrfeige mit dessen buschigen Schwanz verpasst zu bekommen.
+            Charlie schaute ungläubig zu wie die drei Eichhörnchenbrüder sich prügelten… ‘Party?’ dachte er sich irritiert.. ‘Was für eine Party?’ 
+        </p>
+        <p>
+            Charlie folgte dem Falken zurück auf die Lichtung von der er ursprünglich gekommen war. Es war still, viel stiller als es auf dieser 
+            Lichtung um diese Zeit sein sollte. Vorsichtig machte er einen Schritt vorwärts… und plötzlich strömten von überall Waldtiere auf ihn zu, 
+            aus den Baumkronen, unter Steinen und hinter Baumstämmen kamen sie hervor. Unter ihnen auch die Einhörner und seine drei besten Freunde. 
+            Alle hatten aufwändig gebastelte Partyhüte aus Blättern und Blüten auf. “Herzlichen Glückwunsch zum 419. Geburtstag Charlie! Das ist deine 
+            Überraschungsparty”.
+            “Ohmann” lachte Charlie “Ihr habt ja keine Ahnung welche Sorgen ich mir gemacht habe! Ich dachte schon ihr wärt vielleicht alle von einem 
+            magischen Stier ins Meer getrieben worden oder sowas!”
+            “Du hast ja komische Ideen” sagte Charlies Kumpel “Wie du immer auf sowas kommst… Wir haben extra alle Waldtiere gebeten dich zu beschäftigen 
+            während wir die Party vorbereiten! Also außer dem Falken, das war wirklich Zufall. Wir hätten nicht gedacht dass du dich bis an die Steilklippen 
+            wagst!” Charlie zuckte mit den Schultern “Ich hab euch halt vermisst!”
+            Die Party war ein voller Erfolg. Alle hatten Spaß bis spät in die Nacht und Charlie würde sich noch lange an diesen verrückten Geburtstag erinnern.
+            ENDE
+        </p>"""
         hints = [
-            ""
+            "Passend zum Protagonisten, einem magischen Einhorn, wird hier ein magisches Quadrat verlangt."
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel6(), "data": riddle, "algorithm": self.testLevel6Solution()}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel6(), "data": riddle, "algorithm": self.testLevel6Solution(), "success_meesage": success_meesage}
 
     ### Functions for level design ####
 
