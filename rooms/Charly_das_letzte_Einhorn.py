@@ -85,15 +85,28 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel3, "data": riddle, "success_meesage": success_meesage}
 
     def create_level4(self):
-        riddle = ""
+        riddle = "ENHALCAE"
         task_messages = [
-            "",
-            ""
+            """<p>
+                “Huhu!” ….. “Huuuuhuuu! Heh du!” Charlie sah sich verwirrt um. Eine Eule saß in einer Astgabel und fixierte ihn. “Man erzählt sich ein Einhorn würde durch den Wald streifen und allen Tieren bei seinen Problemen helfen. Ich bräuchte auch Hilfe.”
+                Charlie seufzte und lief zu dem Baum in dem die Eule hockte “Klar helfe ich dir auch. Auch wenn ich eigentlich meine Freunde suche… “
+                Die Eule schien erfreut und kramte ein Stück Papier aus einem Astloch. Vorsichtig klemmte sie es zwischen ihre Klauen und zeigte es Charlie “Ich mache gerade ein Schüttelrätsel. Man kann einen tollen Preis gewinnen wenn man die richtige Lösung einsendet aber ich komme nicht auf das letzte Wort!”
+                Charlie scharrte verlegen mit seinem goldenen Huf “Oh mist, ich bin leider auch ganz schlecht in jeder Form von Kreuzworträtseln. Ich habe keine Ahnung was die Lösung sein könnte. Tut mir leid!”
+                Die Eule zuckte mit den Schultern “Macht nichts, im Zweifelsfall funktioniert brute force immer. Dann schicke ich einfach so viele Rätselblätter ein bis das richtige Wort dabei war. Kannst du mir sagen wie viele das wären? Die Buchstaben sind: ‘ENHALCAE’”
+                </p>
+            """
         ]
+        success_meesage = """
+            Charlie überlegte kurz. “Ganz klar, du musst nur """ + self.solveLevel4(riddle) + """ Rätselblätter einschicken damit die richtige Lösung auf jeden Fall dabei ist.”
+            “Gar kein Problem!” sagte die Eule dankbar “Vielleicht habe ich so viele sogar noch rumliegen”. Sie flog zu einem hohlen Baumstamm und fing an darin herumzuwühlen. Charlie setzte seine Suche fort. 
+        """
         hints = [
-            ""
+            "Es muss nicht herausgefunden werden welche Kombinationen möglich sind, nur wieviele.",
+            "Für die Berechnung ist es wichtig zu wissen wie viele Buchstaben neu angeordnet werden müssen.",
+            "Diese Aufgabe lässt sich ganz leicht über Fakultät lösen."
+
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel4, "data": riddle}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel4, "data": riddle, "success_meesage": success_meesage}
 
     def create_level5(self):
         riddle = ""
