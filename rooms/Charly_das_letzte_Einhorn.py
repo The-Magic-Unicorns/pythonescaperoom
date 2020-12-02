@@ -211,24 +211,24 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
 
     ### Level 2 ###
 
+    def decrypt(self, text, key):  
+        key = key * -1
+        return self.encrypt(text, key)
+    def encrypt(self, text, key):
+        reverseText = text[::-1]
+        encrypted = self.caesar(reverseText, key)
+        return encrypted
+    def caesar(self, text, key):
+        encrypted = ""
+        for uChr in text:
+            if uChr == ' ':
+                encrypted += uChr
+                continue
+            iChr = ord(uChr) - 97
+            eChr = chr((iChr + key) %26 + 97)
+            encrypted += eChr
+        return encrypted
     def solveLevel2(self, text):
-        def decrypt(self, text, key):
-            key = key * -1
-            return self.encrypt(text, key)
-        def encrypt(self, text, key):
-            reverseText = text[::-1]
-            encrypted = self.caesar(reverseText, key)
-            return encrypted
-        def caesar(self, text, key):
-            encrypted = ""
-            for uChr in text:
-                if uChr == ' ':
-                    encrypted += uChr
-                    continue
-                iChr = ord(uChr) - 97
-                eChr = chr((iChr + key) %26 + 97)
-                encrypted += eChr
-            return encrypted
         return self.decrypt(text, 2)
 
     ### Level 3 ###
