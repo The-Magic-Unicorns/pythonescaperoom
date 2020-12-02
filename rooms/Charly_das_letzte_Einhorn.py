@@ -32,19 +32,30 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel1, "data": flowers, "success_meesage": success_meesage}
 
     def create_level2(self):
-        riddle = "Gehe zum dunklen Wald"
-        key = 2
+        riddle =  "gehe zum fluss" #"llney fns xaxz" # gehe zum fluss
+        key = 19
 
         task_messages = [
-            "<p>Es war ein milder Frühlingmorgen als Charlie das Einhorn von den ersten Strahlen der Sonne geweckt wurde. Er gähnte, streckte sich und sah sich auf der Lichtung um die er als Schlafplatz gewählt hatte. Tausende kleine Blumen wiegten sich in der sachten Brise und die Waldtiere waren bereit geschäftig. Schmetterlinge und Bienen umschwirrten die Blüten, Eichhörnchen suchten im Unterholz nach Nüssen und die Vögel zwitscherten fröhlich ihre Lieder. Nur eines fehlte: die anderen Einhörner. “Seltsam”, dachte sich Charlie, “Wo sind sie denn alle hin?”. Er beschloss die Anderen zu suchen, wo startete er seine Suche?</p>",
-            "<p>1. Am See:<br />Auch hier waren keine Einhörner zu sehen. Nun begann Charlie sich wirklich Sorgen zu machen, was sollte er nur tun? Hier auf die anderen warten? Sie suchen gehen? Während er darüber grübelte beobachtete er gedankenverloren die Wolken ziehen die sich auf der Oberfläche des klaren Sees spiegelten. Dann wanderte sein Blick zu seiner eigenen Reflektion und einen Moment lang bewunderte er sein strahlend weißes Fell, seine wallende Mähne und sein goldenes Horn. Da fiel es ihm ein! “Mein Horn! Ich bin ein Einhorn! Ich bitte einfach den See mit meiner magischen Einhornmagie um einen Hinweis!” Gesagt, getan. Charlie bündelte seine Magie und erbat einen Hinweis zum Verbleib der anderen Einhörner. Der See leuchtete kurz hell auf und Charlie starrte konzentriert in die dunklen Tiefen. Plötzlich sah Charlie in der Spiegelung des Wassers wie die Wolken ihre Form zu verändern begannen. Sie bildeten… Buchstaben und Zeichen! Charlie merkte sich die Zeichenfolge: <b>" + self.encrypt(riddle, key) + "</b></p>"
+            """<p>
+                Auch hier waren keine Einhörner zu sehen. Nun begann Charlie sich wirklich Sorgen zu machen, was sollte er nur tun? Hier auf die anderen warten? 
+                Sie suchen gehen? Während er darüber grübelte beobachtete er gedankenverloren die Wolken ziehen die sich auf der Oberfläche des klaren Sees spiegelten. 
+                Dann wanderte sein Blick zu seiner eigenen Reflektion und einen Moment lang bewunderte er sein strahlend weißes Fell, seine wallende rosa Mähne in die 
+                er sich vor Kurzem blaue Strähnchen färben ließ um seine Männlichkeit zu unterstreichen, und sein goldenes Horn. Da fiel es ihm ein! “Mein Horn! 
+                Ich bin ein Einhorn! Ich bitte einfach den See mit meiner magischen Einhornmagie um einen Hinweis!” Gesagt, getan. Charlie bündelte seine Magie und 
+                erbat einen Hinweis zum Verbleib der anderen Einhörner. Der See leuchtete kurz hell auf und Charlie starrte konzentriert in die dunklen Tiefen. 
+                Plötzlich sah er in der Spiegelung des Wassers wie die Wolken ihre Form zu verändern begannen. 
+                Sie bildeten… Buchstaben und Zeichen! Charlie merkte sich die Zeichenfolge: “
+                """,
+                 self.encrypt(riddle, key),
+                "”</p>"
         ]
+        success_meesage = "Charlie beschloss dem Hinweis zu folgen und dort weiter zu suchen."
         hints = [
-            "Denke an den verdrehten Gaius Iulius Caesar",
-            "Aus ABCabc wird dcbDCB",
-            "Schlüssel sind variabel"
+            "Denke an den verdehten Gaius Julius Caesar.",
+            "Charlie sah die Wolkenbuchstaben in der Spiegelung des Sees. Vielleicht hat er sie sich deshalb spiegelverkehrt gemerkt? Aus AbCaBc würde so cBaCbA werden.",
+            "Die Schlüssel sind variabel."
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel2, "data": self.encrypt(riddle, key)}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel2, "data": self.encrypt(riddle, key), "success_meesage": success_meesage}
 
     def create_level3(self):
         riddle = "Vokale verboten"
