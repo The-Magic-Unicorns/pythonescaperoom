@@ -17,18 +17,19 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         flowers = ["RED", "INDIGO", "GREEN", "RED", "RED", "YELLOW", "GREEN", "VIOLETT", "INDIGO", "ORANGE", "BLUE", "BLUE", "YELLOW", "ORANGE", "BLUE", "VIOLETT", "YELLOW", "INDIGO", "GREEN", "ORANGE", "RED"]
 
         task_messages = [
-            "Charlie beschloss sich erst einmal auf der Lichtung umzusehen, wo er schon mal hier war. Die Wolken zogen behäbig über den Himmel und ihre sanften Schatten dämpften das grelle Glitzern des taubedecktes Grases in der Morgensonne. Charlie fragte die Vögel, die Dachse, die Maulwürfe und den Fuchs ob sie etwas gesehen hatten doch alle waren ratlos. “Vielleicht haben die Bienen etwas gesehen, die sind immer schon früh unterwegs”, dachte sich Charlie und machte sich auf den Weg richtung Bienenstock der von einem Blumenmeer umgeben war. Vorsichtig darauf achtend keine Blumen unter seinen goldenen Hufen zu zertrampeln ging er auf eine Biene zu. 'Hallo fleißige Biene, du weißt nicht zufällig wo die anderen Einhörner sind?'</p>",
-            "'Hm, vielleicht weiß ich etwas darüber', summte die Biene, 'Da gibt es nur ein Problem: Sieh, ich bin gar nicht so fleißig wie es immer heißt. Und unsere Königin ist nicht nur unersättlich sondern auch sehr wählerisch. Sie möchte unseren frischen Honignektar nur in einer ganz bestimmten Zusammensetzung trinken. Die Blumen stehen aber so wild durcheinander, dass es furchtbar mühsam ist sie in der richtigen Reihenfolge anzufliegen. Und zu allem Übel habe ich auch noch vergessen was die Reihenfolge war die die Königin befohlen hatte. Hilfst du mir? Dann verrate ich dir was ich über die anderen Einhörner weiß.'</p>",
-            "Charlie sah sich die Blumen an, es gab: blaue, rote, grüne, gelbe, lilane, orangene und indigofarbene. Mit seiner magischen Einhornmagie war es ein Leichtes für ihn sie in anderer Reihenfolge einzupflanzen, nur in welcher Reihenfolge könnte die Königin diese Farben haben wollen?",
-            "Bisher standen sie so:",
+            """Charlie beschloss sich erst einmal auf der Lichtung umzusehen, wo er schon mal hier war. Die Wolken zogen behäbig über den Himmel und ihre sanften Schatten dämpften das grelle Glitzern des taubedecktes Grases in der Morgensonne. Charlie fragte die Vögel, die Dachse, die Maulwürfe und den Fuchs ob sie etwas gesehen hatten doch alle waren ratlos. “Vielleicht haben die Bienen etwas gesehen, die sind immer schon früh unterwegs”, dachte sich Charlie und machte sich auf den Weg richtung Bienenstock der von einem Blumenmeer umgeben war. Vorsichtig darauf achtend keine Blumen unter seinen goldenen Hufen zu zertrampeln ging er auf eine Biene zu. “Hallo fleißige Biene, du weißt nicht zufällig wo die anderen Einhörner sind?”
+            “Hm, vielleicht weiß ich etwas darüber”, summte die Biene, “Da gibt es nur ein Problem: Sieh, ich bin gar nicht so fleißig wie es immer heißt. Und unsere Königin ist nicht nur unersättlich sondern auch sehr wählerisch. Sie möchte unseren frischen Honignektar nur in einer ganz bestimmten Zusammensetzung trinken. Die Blumen stehen aber so wild durcheinander, dass es furchtbar mühsam ist sie in der richtigen Reihenfolge anzufliegen. Und zu allem Übel habe ich auch noch vergessen was die Reihenfolge war die die Königin befohlen hatte. Ich weiß nur noch, dass sie gestern aus einem Fenster des Bienenstocks geschaut hatte und etwas gesehen hat, das sie auf die Idee brachte. Hilfst du mir? Dann verrate ich dir was ich über die anderen Einhörner weiß.”
+            Charlie sah sich die Blumen an, es gab: blaue, rote, grüne, gelbe, lilane, orangene und indigofarbene. Mit seiner magischen Einhornmagie war es ein Leichtes für ihn sie in anderer Reihenfolge einzupflanzen, nur in welcher Reihenfolge könnte die Königin diese Farben haben wollen? 
+            <br/> Bisher standen sie so: """,
             "<b>" + self.getColors(flowers) + "</b>"
         ]
+        success_meesage = "Charlie richtete sein Horn auf die Blumen, es blitzte hell auf und alle Blümchen erhoben sich, samt einem Klumpen Erde an der Wurzel, in die Lüfte um sich dann, schön geordnet in den Farben des Regenbogens in einem halbkreis um den Bienenstock herum selbst wieder einzupflanzen. Die Biene summte fröhlich und flog ein paar Loopings. “Ich weiß, dass du die anderen Einhörner bestimmt schneller wieder siehst wenn du jetzt nicht auf der Lichtung bleibst. Also hopp hopp, weg mit dir, tiefer in den Wald.” Diese Aussage fand Charlie nun doch sehr mysteriös aber die Biene war bereits wieder in den Stock geflogen und so machte er sich auf den Weg zum See."
         hints = [
-            "Anzahl einzelner Farben irrelevant",
-            "Natürliches Phänomen, (Regen + Sonne)",
-            "ROYGBIV"
+            "Es standen tausende kleine Blumen auf der Lichtung, Charlie pflanzte nur einige davon um. Es ist für die Lösung des Rätsels unerheblich wie viele Blumen es sind, es geht nur um die Reihenfolge der Farben.",
+            "Die Königin kam gestern auf die Idee diese bestimmte Reihenfolge zu wollen als sie etwas sah das ihr gefiel. Charlie erinnerte sich, dass es gestern zwar im Allgemeinen sonnig war, es zwischendurch aber immer wieder kurze Regenschauer gab.",
+            "R O Y G B I V"
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel1, "data": flowers}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel1, "data": flowers, "success_meesage": success_meesage}
 
     def create_level2(self):
         riddle = "Gehe zum dunklen Wald"
@@ -126,9 +127,10 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             encrypted = ""
             for uChr in text:
                 if uChr == ' ':
+                    encrypted += uChr
                     continue
-                iChr = ord(uChr)
-                eChr = chr((iChr + key) %128)
+                iChr = ord(uChr) - 97
+                eChr = chr((iChr + key) %26 + 97)
                 encrypted += eChr
             return encrypted
         return self.decrypt(text, 2)
