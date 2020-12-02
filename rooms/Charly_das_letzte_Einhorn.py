@@ -60,13 +60,29 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
     def create_level3(self):
         riddle = "Vokale verboten"
         task_messages = [
-            "Nach der korrekten Eingabe des Codes wird nun geheimnisvolle Musik abgespielt und eine Stimme sagt mehrfach: ",
-            "</b>" + riddle + "</b>"
+            """<p>
+                Klickklickklack Klickklack Klickklackklick... Charlie spitzte die Ohren. Das klang ja… wie Tastaturklicken… und dann schwere Seufzer dazwischen. 
+                Er folgte dem seltsamen Geräusch. Auf einem Fleck grünem Gras saß ein Kaninchen vor einem alten Laptop und tippte eifrig auf der Tastatur herum. 
+                “Hallo” grüßte Charlie freundlich “irgendwas sagt mir dass du vielleicht Hilfe brauchen könntest?” Das Kaninchen seufzte noch einmal schwer und 
+                blickte zu Charlie auf “Ja, allerdings. Ich bin auf der Suche nach einer netten Kaninchendame und weil den ganzen Tag durch den Wald hoppeln 
+                so furchtbar anstrengend ist, dachte ich ich probiere es mal mit Onlinedating. Aber auf diesem blöden Ding ist die Tastatur kaputt und ich kann 
+                nur Großbuchstaben tippen! So denken doch die Damen gleich ich wäre unhöflich. Du kannst nicht zufällig mit deiner magischen Einhornmagie dafür 
+                sorgen, dass alle Buchstaben zu Kleinbuchstaben konvertiert werden?”
+                “Klar kann ich das” sagte Charlie, der noch immer etwas perplex war über ein Kaninchen das nicht nur einen Laptop nutzte sondern sich auch am 
+                Online-Dating probierte. Aber dann fiel ihm ein dass er ein Einhorn war und deshalb Logik nicht viel zählte in diesem Wald. Es war eine seiner 
+                einfachsten Übungen den gelungen Anmachspruch des Kaninchens zu konvertieren: “SUCHE NETTE KANINCHENDAME ZUM FAMILIE ERWEITERN!”</p>
+            """
         ]
+        success_meesage = """<p>
+                ‘Erweitern?’ dachte sich Charlie, ‘seltsame Wortwahl’ aber dann dachte er sich nichts weiter dabei und verhexte den Laptop sodass nun alles 
+                klein geschrieben wurde. “Vielen Dank!” sagte das Kaninchen “Bestimmt hat meine Frau oder eins meiner Kinder wieder heimlich beim Chatten 
+                Möhren gemümmelt und in die Tastatur gekrümelt”</p>
+                <p>Charlie schaute das Kaninchen perplex an. Seine Frau? Eins seiner Kinder? 
+                Aber Kaninchensitten waren eben andere als Einhornsitten und so setzte Charlie kommentarlos seine Suche fort.</p>"""
         hints = [
             "Wie lautet der Spruch '" + riddle + "' wenn Vokale verboten sind?",
         ]
-        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel3, "data": riddle}
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel3, "data": riddle, "success_meesage": success_meesage}
 
     def create_level4(self):
         riddle = ""
@@ -147,18 +163,8 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         return self.decrypt(text, 2)
 
     ### Level 3 ###
-
-    def solveLevel3(self, word):
-        result = ""
-        vowels = ["a", "e", "i", "o", "u"]
-        for c in word:
-            if not c in vowels:
-                result = result + c
-        return result
-
-    ### Level 4 ###
     # Result should be in lower case
-    def solveLevel4(self, riddle):
+    def solveLevel3(self, riddle):
         result = ""
         for word in riddle.split():
             if word.isdigit():
@@ -171,9 +177,9 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             result += word[0].lower()
         return result
 
-    ### Level 5 ###
+    ### Level 4 ###
     #Count of all combination possibilities of a given word
-    def solveLevel5(self, riddle):
+    def solveLevel4(self, riddle):
         def recursive_combinations(input_word, combinations=['']):
             if len(input_word) == 0:
                 return combinations
@@ -182,6 +188,15 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             combinations = combinations + list(map(lambda x: x + first_letter, combinations))
             return recursive_combinations(reduced_word, combinations)
         return recursive_combinations(riddle)
+
+    ### Level 5 ###
+    def solveLevel5(self, word):
+        result = ""
+        vowels = ["a", "e", "i", "o", "u"]
+        for c in word:
+            if not c in vowels:
+                result = result + c
+        return result
 
     #Permutations
     def solveLevel5b(riddle):
