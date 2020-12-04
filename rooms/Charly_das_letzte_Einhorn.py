@@ -14,6 +14,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         self.add_level(self.create_level4())
         self.add_level(self.create_level5())
         self.add_level(self.create_level6())
+        self.add_level(self.create_level7())
 
     ### LEVELS ###
 
@@ -179,13 +180,40 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             “Du hast ja komische Ideen” sagte Charlies Kumpel “Wie du immer auf sowas kommst… Wir haben extra alle Waldtiere gebeten dich zu beschäftigen 
             während wir die Party vorbereiten! Also außer dem Falken, das war wirklich Zufall. Wir hätten nicht gedacht dass du dich bis an die Steilklippen 
             wagst!” Charlie zuckte mit den Schultern “Ich hab euch halt vermisst!”
-            Die Party war ein voller Erfolg. Alle hatten Spaß bis spät in die Nacht und Charlie würde sich noch lange an diesen verrückten Geburtstag erinnern.
-            ENDE
         """
         hints = [
             "Passend zum Protagonisten, einem magischen Einhorn, wird hier ein magisches Quadrat verlangt."
         ]
         return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel6, "data": riddle, "algorithm": self.testLevel6Solution, "success_message": success_message}
+
+    def create_level7(self):
+        riddle = [[0] * 8] * 8
+        ## set charly to position 0;0
+        riddle[0][0] = 1
+        task_messages = [
+            """
+            Charlie zuckte mit den Schultern “Ich hab euch halt vermisst! Und den Tieren bei ihren Problemen zu helfen hat ja irgendwie sogar Spaß gemacht, ich mag Rätsel. Und zu meinem Geburtstag wünsche ich mir, dass wir alle zusammen noch einmal ein letztes Rätsel lösen, das berühmte Acht-Einhörner-Rätsel:
+            Wir teilen die Lichtung in 64 Felder auf, wie ein Schachbrett. Ich stelle mich hier an Position x und ihr anderen Sieben müsst euch so hinstellen, dass in keiner Zeile, Spalte oder Diagonale zwei Einhörner stehen.”
+            Die Anderen waren begeistert von diesem lustigen Partyspiel und begannen sofort sich so anzuordnen, dass jeder jeweils eine Zeile und eine Spalte sowe die Diagonale für sich alleine hatte.
+            """
+        ]
+
+        success_message = [
+            """
+            Und weil Einhörner sehr clever sind hatten sie auch dieses Rätsel im Nu gelöst!
+            Die Party war ein voller Erfolg. Alle hatten Spaß bis spät in die Nacht und Charlie würde sich noch lange an diesen verrückten Geburtstag erinnern.
+            ENDE
+            """
+        ]
+
+        hints = [
+            "Das Rätsel lässt sich gut rekursiv lösen!"
+            "Hier gibt es Info dazu: https://lmgtfy.app/?q=8+damen+problem&iie=1"
+        ]
+
+        return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel7, "data": riddle, "success_message": success_message}
+
+
 
 
 
@@ -211,6 +239,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         for flower in flowers:
             colored_output = colored_output + '<font color="' + flower.lower() + '">' + flower + '</font> - '
         return colored_output
+
 
     ### SOLUTIONS ###
 
@@ -338,3 +367,34 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
                 counter += 1
             return True
         return test_row(result[0]) and test_row(result[1]) and test_row(result[2]) and test_numbers(result)
+
+    # the 8 problem
+    def solveLevel7(self, riddle):
+        def place_queens(grid):
+            size = len(grid)
+            for y in range(size):
+                for x in range(size):
+                    if grid[y][x] == 0:
+                        if is_valid_position(grid, y, x):
+                            grid[y][x] = 1
+                            place_queens(grid)
+                            if sum(sum(a) for a in grid) == size:
+                                return grid
+                            grid[y][x] = 0
+
+        def is_valid_position(grid, y, x):
+            size = len(grid)
+            for i in range(size):
+                if grid[y][i] == 1:
+                    return False
+            for i in range(size):
+                if grid[i][x] == 1:
+                    return False
+            for i in range(size):
+                for j in range(size):
+                    if grid[i][j] == 1:
+                        if abs(i - y) == abs(j - x):
+                            return False
+            return True
+        grid = place_queens(riddle)
+        return grid
