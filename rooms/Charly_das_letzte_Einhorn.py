@@ -115,7 +115,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel4, "data": riddle, "success_message": success_message}
 
     def create_level5(self):
-        riddle = ""
+        riddle = "Sesam oeffne dich"
         task_messages = [
             """<p>
             Charlie war nicht gerade begeistert von seinem Ziel aber er wollte gründlich suchen und keinen Ort auslassen. 
@@ -143,7 +143,6 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             "Der Name des Scheichs war Ali Baba. Mit dem selben Lösungssatz hatte er schon einmal 40 Räuber überlistet. (Der Lösungssatz muss ohne Umlaute geschrieben werden (ä = ae, ü = ue, ö = oe))",
             "Dass der Lösungssatz “Sesam oeffne dich” ist habt ihr bestimmt längst raus. Welche Buchstaben, die alle zu einer bestimmten Gruppe gehören, könnte man hier weglassen um pro Wort jeweils 3 Buchstaben übrig zu haben?",
             "Die Muttersprache des Scheichs ist natürlich Arabisch. Hier werden in der Regel Vokale nicht geschrieben."
-
         ]
         return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel5, "data": riddle, "success_message": success_message}
 
@@ -187,6 +186,8 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             "Passend zum Protagonisten, einem magischen Einhorn, wird hier ein magisches Quadrat verlangt."
         ]
         return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel6, "data": riddle, "algorithm": self.testLevel6Solution, "success_message": success_message}
+
+
 
     ### Functions for level design ####
 
@@ -294,8 +295,9 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         result = ""
         vowels = ["a", "e", "i", "o", "u"]
         for c in word:
+            c = c.lower()
             if not c in vowels:
-                result = result + c
+                result += c
         return result
 
     ### Level 6 ###
