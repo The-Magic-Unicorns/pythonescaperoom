@@ -79,12 +79,12 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
                 einfachsten Übungen den gelungen Anmachspruch des Kaninchens zu konvertieren: “SUCHE NETTE KANINCHENDAME ZUM FAMILIE ERWEITERN!”</p>
             """
         ]
-        success_message = """<p>
+        success_message = """
                 ‘Erweitern?’ dachte sich Charlie, ‘seltsame Wortwahl’ aber dann dachte er sich nichts weiter dabei und verhexte den Laptop, sodass nun alles 
                 klein geschrieben wurde. “Vielen Dank!” sagte das Kaninchen “Bestimmt hat meine Frau oder eins meiner Kinder wieder heimlich beim Chatten 
-                Möhren gemümmelt und in die Tastatur gekrümelt”</p>
-                <p>Charlie schaute das Kaninchen perplex an. Seine Frau? Eins seiner Kinder? 
-                Aber Kaninchensitten waren eben andere als Einhornsitten und so setzte Charlie kommentarlos seine Suche fort.</p>"""
+                Möhren gemümmelt und in die Tastatur gekrümelt”
+                Charlie schaute das Kaninchen perplex an. Seine Frau? Eins seiner Kinder? 
+                Aber Kaninchensitten waren eben andere als Einhornsitten und so setzte Charlie kommentarlos seine Suche fort."""
         hints = [
            "In diesem Rätsel ist nichts Besonderes gefordert, ein einfacher Algorithmus der Uppercase zu Lowercase umwandelt reicht aus"
         ]
@@ -109,7 +109,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         hints = [
             "Es muss nicht herausgefunden werden welche Kombinationen möglich sind, nur wieviele.",
             "Für die Berechnung ist es wichtig zu wissen wie viele Buchstaben neu angeordnet werden müssen.",
-            "Diese Aufgabe lässt sich ganz leicht über Fakultät lösen."
+            "Beachte, dass die leere Menge Bestandteil des Rätsels ist."
 
         ]
         return {"task_messages": task_messages, "hints": hints, "solution_function": self.solveLevel4, "data": riddle, "success_message": success_message}
@@ -136,9 +136,9 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             Nun musste Charlie rausfinden was dieser Spruch war und welche Buchstaben er für die Lösung weglassen musste.
             </p>"""
         ]
-        success_message = """<p>
+        success_message = """
         Als Charlie die Buchstaben “ssm ffn dch” eingab sprang die Fessel mit einem dumpfen Klicken auf und der Falke hüpfte fröhlich umher. Er bedankte sich überschwänglich und erklärte sich bereit Charlie bei der Suche nach den Einhörnern zu helfen. Sofort erhob er sich in die Lüfte, flog ein paar Kreise und rief Charlie dann zu: “Heh ich glaube ich kann sie sehen! Komm folge mir!” Charlie galoppierte aufgeregt dem Falken hinterer.
-        </p>"""
+        """
         hints = [
             "Der Name des Scheichs war Ali Baba. Mit dem selben Lösungssatz hatte er schon einmal 40 Räuber überlistet. (Der Lösungssatz muss ohne Umlaute geschrieben werden (ä = ae, ü = ue, ö = oe))",
             "Dass der Lösungssatz “Sesam oeffne dich” ist habt ihr bestimmt längst raus. Welche Buchstaben, die alle zu einer bestimmten Gruppe gehören, könnte man hier weglassen um pro Wort jeweils 3 Buchstaben übrig zu haben?",
@@ -163,15 +163,13 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             Das ist ganz einfach, ihr macht das so…”
             </p>"""
         ]
-        success_message = """<p>
+        success_message = """
             Charlie zeigte ihnen wie sie die Nüsse anordnen mussten und die drei Brüder nahmen sich glücklich an den Händen und tanzten im Kreis. 
             “Vielen Dank, magisches Einhorn, nun müssen wir nie mehr streiten” quiekte Chip. “Ja vielen Dank!” kam von Chop. 
             “Danke, und viel Spaß bei der Party” sagte Chap. Chip und Chop starrten ihn entsetzt an “Das dürfen wir doch nicht verraten! 
             Du bist so doof, immer verplapperst du dich!”  “Gar nicht immer! Und ihr seit viel dööfer!” kreischte Chap und schubste Chop vom 
             Baumstamm nur um dafür direkt von Chip eine Ohrfeige mit dessen buschigen Schwanz verpasst zu bekommen.
             Charlie schaute ungläubig zu wie die drei Eichhörnchenbrüder sich prügelten… ‘Party?’ dachte er sich verwirrt.. ‘Was für eine Party?’ 
-        </p>
-        <p>
             Charlie folgte dem Falken zurück auf die Lichtung von der er ursprünglich gekommen war. Es war still, viel stiller als es auf dieser 
             Lichtung um diese Zeit sein sollte. Vorsichtig machte er einen Schritt vorwärts… und plötzlich strömten von überall Waldtiere auf ihn zu, 
             aus den Baumkronen, unter Steinen und hinter Baumstämmen kamen sie hervor. Unter ihnen auch die Einhörner und seine drei besten Freunde. 
@@ -184,7 +182,7 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
             wagst!” Charlie zuckte mit den Schultern “Ich hab euch halt vermisst!”
             Die Party war ein voller Erfolg. Alle hatten Spaß bis spät in die Nacht und Charlie würde sich noch lange an diesen verrückten Geburtstag erinnern.
             ENDE
-        </p>"""
+        """
         hints = [
             "Passend zum Protagonisten, einem magischen Einhorn, wird hier ein magisches Quadrat verlangt."
         ]
@@ -251,18 +249,21 @@ class Charly_das_letzte_Einhorn(EscapeRoom):
         return decrypt(text, 19)
 
     ### Level 3 ###
-    # Result should be in lower case
+    # Result should be in lower case ### ANDRE
     def solveLevel3(self, riddle):
         result = ""
-        for word in riddle.split():
-            if word.isdigit():
-                continue
-            # This means not all poitions in word are numeric, now it could be iterated over word using different methods:
-            # via char index
-            # via similar for loop as above
-            # via slicing operator
-            # this is not necessary in our example but described in our slides
-            result += word[0].lower()
+        # This means not all poitions in word are numeric, now it could be iterated over word using different methods:
+        # via char index
+        # via similar for loop as above
+        # via slicing operator
+        # this is not necessary in our example but described in our slides
+        #result += word[0].lower()
+        for uChr in riddle:
+            iChr = ord(uChr)
+            if 65 <= iChr <= 90:
+                iChr += 32
+                uChr = chr(iChr)
+            result += uChr
         return result
 
     ### Level 4 ###

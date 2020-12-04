@@ -1,8 +1,11 @@
-
+import string
 def run(riddle):
     result = ""
-    for word in riddle.split():
-        if word.isdigit():
-            continue
-        result += word[0].lower()
+    for uChr in riddle:
+        iChr = ord(uChr)
+        if 65 <= iChr <= 90:
+            iChr += 32
+            uChr = chr(iChr)
+        result += uChr
+    print(result)
     return result
